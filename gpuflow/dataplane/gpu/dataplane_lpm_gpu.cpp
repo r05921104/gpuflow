@@ -35,5 +35,18 @@ int DataPlaneLPMIPv4GPU::CreateLPMTable() {
   return 0;
 }
 
+DataPlaneLPMIPv6GPU::DataPlaneLPMIPv6GPU() {
+  if(CreateLPMTable() < 0) {
+    std::cerr << "Error occured on creating ipv6 lpm table" << std::endl;
+    exit(1);
+  }  
+}
 
+int DataPlaneLPMIPv6GPU::CreateLPMTable() {
+  if(ipv6_lpm_factory.CreateLPMTable() < 0) {
+    std::cerr << "Create lpm table error from ipv6 lpm factory";  
+  } else {
+    std::cout << "Create lpm table from ipv6 lpm factory successfully." << std::endl;
+  }
+}
 } // namespace gpuflow
